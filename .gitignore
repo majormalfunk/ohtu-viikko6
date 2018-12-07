@@ -12,3 +12,17 @@ gradle-app.setting
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
+
+# macOS
+.DS_Store
+
+# Koodi
+/Laskin/gradle/
+/Laskin/.nb-gradle/
+/Laskin/build/
+/Laskin/bin/
+/QueryLanguage/gradle/
+/QueryLanguage/.nb-gradle/
+/QueryLanguage/build/
+/QueryLanguage/bin/
+
