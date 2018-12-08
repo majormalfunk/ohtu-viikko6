@@ -27,5 +27,9 @@ public class QueryBuilder {
         return this;
     }
     
+    public QueryBuilder or(Matcher... matchers) {
+        this.matcher = new Or(matchers);
+        return this;
+    }
     
 }

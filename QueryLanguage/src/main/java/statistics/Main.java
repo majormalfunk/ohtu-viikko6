@@ -82,7 +82,16 @@ public class Main {
         m = query.playsIn("NYR").hasAtLeast(10, "goals").hasFewerThan(25, "goals").build();
 
         printPlayers(m, stats);
+        
+        System.out.println("\n----------- OR -------------\n");
+        query = new QueryBuilder();
+        Matcher m1 = query.playsIn("PHI").hasAtLeast(10, "goals").hasFewerThan(20, "assists").build();
+        query = new QueryBuilder();
+        Matcher m2 = query.playsIn("EDM").hasAtLeast(60, "points").build();
+        m = query.or(m1, m2).build();
 
+        printPlayers(m, stats);
+        
     }
     
     private static void printPlayers(Matcher m, Statistics stats) {
