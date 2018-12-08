@@ -14,18 +14,16 @@ public class Main {
                 new PlaysIn("PHI")
         );
 
-        for (Player player : stats.matches(m)) {
-            System.out.println(player);
-        }
+        printPlayers(m, stats);
 
+        /*
         System.out.println("\n----------- ALL ------------\n");
         
         // ALL
         m = new All();
 
-        for (Player player : stats.matches(m)) {
-            System.out.println(player);
-        }
+        printPlayers(m, stats);
+        */
 
         System.out.println("\n----------- NOT ------------\n");
         
@@ -33,9 +31,7 @@ public class Main {
         m = new Not(new HasAtLeast(1, "goals")
         );
 
-        for (Player player : stats.matches(m)) {
-            System.out.println(player);
-        }
+        printPlayers(m, stats);
 
         System.out.println("\n----------- OR -------------\n");
         
@@ -45,19 +41,54 @@ public class Main {
                 new HasAtLeast(85, "points")
         );
 
-        for (Player player : stats.matches(m)) {
-            System.out.println(player);
-        }
+        printPlayers(m, stats);
 
-        System.out.println("\n------- HAS FEWER THAN------\n");
+        System.out.println("\n------- HAS FEWER THAN -----\n");
         
         // HAS FEWER THAN
         m = new HasFewerThan(1, "goals");
 
+        printPlayers(m, stats);
+
+        System.out.println("");
+        System.out.println("----------------------------");
+        System.out.println("------- QUERY BUILDER ------");
+        System.out.println("----------------------------");
+
+        /*
+        System.out.println("\n-------- ALL PLAYERS -------\n");
+        
+        // ALL PLAYERS
+        QueryBuilder query = new QueryBuilder();
+        m = query.build();
+
+        printPlayers(m, stats);
+        */
+        
+        System.out.println("\n-------- PLAYS IN -------\n");
+        
+        // PLAYS IN
+        
+        QueryBuilder query = new QueryBuilder();
+        m = query.playsIn("NYR").build();
+
+        printPlayers(m, stats);
+
+        System.out.println("\n-------- PLAYS IN, HAS AT LEAST, HAS FEWER THAN -------\n");
+        
+        // PLAYS IN, HAS AT LEAST, HAS FEWER THAN
+        
+        query = new QueryBuilder();
+        m = query.playsIn("NYR").hasAtLeast(10, "goals").hasFewerThan(25, "goals").build();
+
+        printPlayers(m, stats);
+
+    }
+    
+    private static void printPlayers(Matcher m, Statistics stats) {
         for (Player player : stats.matches(m)) {
             System.out.println(player);
         }
-
-
     }
+    
 }

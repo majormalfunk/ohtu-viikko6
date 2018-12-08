@@ -4,6 +4,7 @@ package statistics.matcher;
 import statistics.Player;
 
 public class PlaysIn implements Matcher {
+
     private String team;
 
     public PlaysIn(String team) {
